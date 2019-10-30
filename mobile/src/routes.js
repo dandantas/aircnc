@@ -5,13 +5,11 @@ import List from './pages/List';
 import Book from './pages/Book';
 
 const Routes = createAppContainer(
-
   createSwitchNavigator({
     Login,
     List,
-    Book
-  })
-
+    Book,
+  }),
 );
 
 export default Routes;

@@ -10,5 +10,6 @@ npm-debug.*
 web-build/
 web-report/
 
-# macOS
-.DS_Store
+.eslintrc.json
+package-lock.json
+babel.config.js

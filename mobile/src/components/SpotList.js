@@ -38,7 +38,7 @@ function SpotList({ tech, navigation }) {
           <View style={styles.listItem}>
             <Image
               style={styles.thumbnail}
-              source={{ uri: item.thumbnail_url }}
+              source={{ uri: 'https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?cs=srgb&dl=adult-b-blur-927022.jpg&fm=jpg' }}
             />
             <Text style={styles.company}>{item.company}</Text>
             <Text style={styles.price}>

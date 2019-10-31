@@ -1,31 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import {View, AsyncStorage, Image, Text,Platform, KeyboardAvoidingView ,StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, AsyncStorage, Image, Text, Platform, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 import api from '../services/api';
 
 import logo from '../assets/logo.png';
 
-export default function Login({navigation}){
+export default function Login({ navigation }) {
 
   const [email, setEmail] = useState('');
   const [techs, setTechs] = useState('');
 
-  useEffect(()=>{
-    AsyncStorage.getItem('user').then(user=>{
-      if(user){
-        navigation.navigate('List');
+  useEffect(() => {
+    AsyncStorage.getItem('user').then(user => {
+      if (user) {
+        //navigation.navigate('List');
       }
     })
 
   }, [])
 
-  async function handleSubmit(){
+  async function handleSubmit() {
     //email, techs
     const response = await api.post('/sessions', {
       email
     })
 
-    const {_id} = response.data;
+    const { _id } = response.data;
 
     await AsyncStorage.setItem('user', _id);
     await AsyncStorage.setItem('techs', techs);
@@ -34,36 +34,36 @@ export default function Login({navigation}){
   }
 
   return (
-    <KeyboardAvoidingView enabled={Platform.OS==='ios' || 'android'} behavior='padding' style={styles.container}>
-    <Image source={logo}/>
+    <KeyboardAvoidingView enabled={Platform.OS === 'ios' || 'android'} behavior='padding' style={styles.container}>
+      <Image source={logo} />
 
-    <View style={styles.form}>
-      <Text style={styles.label}>SEU E-MAIL *</Text>
-      <TextInput 
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-        style={styles.input}
-        placeholder="Seu e-mail"
-        placeholderTextColor="#999"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Text style={styles.label}>TECNOLOGIAS *</Text>
-      <TextInput 
-        style={styles.input}
-        placeholder="Tecnologias de interesse"
-        placeholderTextColor="#999"
-        autoCapitalize='words' //primeira letra de cada palavra em capslock
-        autoCorrect={false}
-        value={techs}
-        onChangeText={setTechs}
-      />
-      <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-        <Text style={styles.buttonText}>Encontrar Spots</Text>
-      </TouchableOpacity>
+      <View style={styles.form}>
+        <Text style={styles.label}>SEU E-MAIL *</Text>
+        <TextInput
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+          style={styles.input}
+          placeholder="Seu e-mail"
+          placeholderTextColor="#999"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <Text style={styles.label}>TECNOLOGIAS *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Tecnologias de interesse"
+          placeholderTextColor="#999"
+          autoCapitalize='words' //primeira letra de cada palavra em capslock
+          autoCorrect={false}
+          value={techs}
+          onChangeText={setTechs}
+        />
+        <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+          <Text style={styles.buttonText}>Encontrar Spots</Text>
+        </TouchableOpacity>
       </View>
-  </KeyboardAvoidingView>)
+    </KeyboardAvoidingView>)
 
 }
 
@@ -77,10 +77,10 @@ const styles = StyleSheet.create({
   form: {
     alignSelf: "stretch",
     paddingHorizontal: 30,
-    marginTop: 30, 
+    marginTop: 30,
   },
 
-  label:{
+  label: {
     fontWeight: 'bold',
     color: '#444',
     marginBottom: 8,
@@ -100,14 +100,14 @@ const styles = StyleSheet.create({
   button: {
     height: 42,
     backgroundColor: '#f05a5b',
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 2,
   },
 
-  buttonText:{
+  buttonText: {
     color: '#FFF',
-    fontWeight:'bold',
+    fontWeight: 'bold',
     fontSize: 16,
   }
 

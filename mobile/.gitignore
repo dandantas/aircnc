@@ -13,3 +13,4 @@ web-report/
 .eslintrc.json
 package-lock.json
 babel.config.js
+yarn.lock
